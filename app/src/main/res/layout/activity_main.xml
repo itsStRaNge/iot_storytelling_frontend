@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent_view"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/background_img"
+        android:src="@drawable/background"
+        android:scaleType="fitXY"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/bird_object"
+        android:id="@+id/myimage_rel"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sensor_overlay"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@drawable/text_boarder"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:text="@string/tutorial"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:textSize="@dimen/text_font_size"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:id="@+id/text_view"/>
+            <ImageView
+                android:src="@drawable/ic_camera_alt_black_24dp"
+                android:background="@color/background_ic_cam"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp"
+                android:layout_marginEnd="15dp"
+                android:id="@+id/camera_button"/>
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:id="@+id/environment"
+            android:columnCount="2"
+            android:columnWidth="320dp"
+            android:orientation="vertical"
+            android:rowCount="2"
+            android:stretchMode="columnWidth">
+            <LinearLayout
+                android:id="@+id/field_topleft"
+                android:layout_marginBottom="@dimen/drop_margin_h"
+                android:layout_marginTop="@dimen/drop_margin_h"
+                android:layout_marginEnd="@dimen/drop_margin_w"
+                android:layout_marginStart="@dimen/drop_margin_w"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_row="0"
+                android:background="@drawable/shape"
+                android:gravity="center" >
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bird_object"
+                    android:id="@+id/myimage_fields"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/field_bottomleft"
+                android:layout_marginBottom="@dimen/drop_margin_h"
+                android:layout_marginTop="@dimen/drop_margin_h"
+                android:layout_marginEnd="@dimen/drop_margin_w"
+                android:layout_marginStart="@dimen/drop_margin_w"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/shape"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/field_topright"
+                android:layout_marginBottom="@dimen/drop_margin_h"
+                android:layout_marginTop="@dimen/drop_margin_h"
+                android:layout_marginEnd="@dimen/drop_margin_w"
+                android:layout_marginStart="@dimen/drop_margin_w"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/shape"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/field_bottomright"
+                android:layout_marginBottom="@dimen/drop_margin_h"
+                android:layout_marginTop="@dimen/drop_margin_h"
+                android:layout_marginEnd="@dimen/drop_margin_w"
+                android:layout_marginStart="@dimen/drop_margin_w"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:background="@drawable/shape"
+                android:orientation="horizontal"
+                android:gravity="center">
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_layout"
+        android:background="@color/white"
+        android:padding="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Downloading "
+        android:layout_marginBottom="15dp"/>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/download"
+        android:scaleY="7"/>
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="@string/progress_default_text"
+        android:layout_marginTop="15dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

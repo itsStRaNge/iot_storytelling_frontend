@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="drop_margin_h">150dp</dimen>
+    <dimen name="drop_margin_w">120dp</dimen>
+    <dimen name="gif_width">100dp</dimen>
+    <dimen name="gif_height">100dp</dimen>
+
+    <dimen name="text_font_size">22sp</dimen>
+</resources>

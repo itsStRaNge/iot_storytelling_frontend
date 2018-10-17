@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IoT_Storytelling_Sensor</string>
+    <string name="title_activity_qrscanner">QRScanner</string>
+
+    <string name="progress_default_text">- / -</string>
+
+    <string name="tutorial">Hello, this bird needs help to move around.\n\nTry to grab it and move it somewhere.\n\nTry to place the bird in one of the four positions and go scan a QR code.
+    </string>
+</resources>
