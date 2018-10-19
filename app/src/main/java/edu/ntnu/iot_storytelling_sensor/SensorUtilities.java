@@ -127,14 +127,16 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
         Drawable normalShape = getDrawable(R.drawable.shape);
 
         switch(event.getAction()) {
-            case DragEvent.ACTION_DRAG_ENTERED:
+           /* case DragEvent.ACTION_DRAG_ENTERED:
+                // TODO add boarders when hovering over it
                 if(v.getId() != R.id.parent_view)
                     v.setBackground(enterShape);
                 break;
             case DragEvent.ACTION_DRAG_EXITED:
+                // TODO remove boarders
                 if(v.getId() != R.id.parent_view)
                     v.setBackground(normalShape);
-                break;
+                break;*/
             case DragEvent.ACTION_DROP:
                 ViewGroup container = (ViewGroup) v;
 
