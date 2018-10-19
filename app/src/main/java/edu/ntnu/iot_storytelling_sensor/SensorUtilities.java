@@ -3,7 +3,6 @@ package edu.ntnu.iot_storytelling_sensor;
 import android.Manifest;
 import android.content.ClipData;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,13 +13,13 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.ntnu.iot_storytelling_sensor.Manager.FileManager;
-import edu.ntnu.iot_storytelling_sensor.Manager.FirebaseManager;
 import edu.ntnu.iot_storytelling_sensor.Manager.UploadInterface;
 import edu.ntnu.iot_storytelling_sensor.Manager.UploadManager;
 import pl.droidsonroids.gif.GifImageView;
@@ -52,10 +51,9 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
             check_camera_permission();
 
             /* Drag and Drop Init */
-            findViewById(R.id.field_topleft).setOnDragListener(this);
-            findViewById(R.id.field_topright).setOnDragListener(this);
-            findViewById(R.id.field_bottomleft).setOnDragListener(this);
-            findViewById(R.id.field_bottomright).setOnDragListener(this);
+            // TODO remove the corresponding dragListeners from the removed layouts
+            findViewById(R.id.guitar_layout).setOnDragListener(this);
+            findViewById(R.id.piano_layout).setOnDragListener(this);
             findViewById(R.id.parent_view).setOnDragListener(this);
 
             m_field_obj = (GifImageView) findViewById(R.id.myimage_fields);
@@ -94,16 +92,33 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
     /* ON TOUCH LISTENER */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            ClipData data = ClipData.newPlainText("", "");
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
-                    v);
-            v.startDrag(data, shadowBuilder, v, 0);
-            v.setVisibility(View.INVISIBLE);
-            return true;
-        } else {
-            return false;
+        switch(v.getId()){
+            case R.id.myimage_fields:
+            case R.id.myimage_rel:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    ClipData data = ClipData.newPlainText("", "");
+                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                            v);
+                    v.startDrag(data, shadowBuilder, v, 0);
+                    v.setVisibility(View.INVISIBLE);
+                    return true;
+                } else {
+                    return false;
+                }
+            case R.id.guitar_layout:
+                // TODO check if bird has disappeard
+                // m_field_obj.getVisibility() == View.INVISIBLE
+                //              m_rel_obj
+
+                //ViewGroup parent = (ViewGroup) m_field_obj.getParent();
+                //parent.getId() == R.id.guitar_layout
+
+                // TODO: m_field_obj.setVisibilitz(View.VISIBLE)
+                // TODO: call create_request()
+                break;
+            // TODO add case for the second field
         }
+        return true;
     }
 
     @Override
@@ -165,22 +180,17 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
     private void create_request(){
         int position = 0; // stays zero if m_rel_obj is active
 
+        // TODO: remove the corresponding switch cases for removed lazouts
         if(m_field_obj.getVisibility() == View.VISIBLE){
             ViewGroup parent = (ViewGroup) m_field_obj.getParent();
             switch(parent.getId()){
-                case R.id.field_topleft:
+                case R.id.guitar_layout:
                     position = 1;
                     break;
-                case R.id.field_topright:
+                case R.id.piano_layout:
                     position = 2;
                     break;
-                case R.id.field_bottomleft:
-                    position = 3;
-                    break;
-                case R.id.field_bottomright:
-                    position = 4;
-                    break;
-            }
+                }
         }
 
         try {
