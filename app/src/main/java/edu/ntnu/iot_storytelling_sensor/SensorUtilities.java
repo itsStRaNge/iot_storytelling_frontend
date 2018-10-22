@@ -107,16 +107,27 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
                 }
             case R.id.guitar_layout:
                 // TODO check if bird has disappeard
-                // m_field_obj.getVisibility() == View.INVISIBLE
-                //              m_rel_obj
-
-                //ViewGroup parent = (ViewGroup) m_field_obj.getParent();
+                if(m_field_obj.getVisibility() == View.INVISIBLE) {
+                    ViewGroup parent = (ViewGroup) m_field_obj.getParent();
+                    if (parent.getId() == R.id.guitar_layout)
+                        m_field_obj.setVisibility(View.VISIBLE);
+                        create_request();
+                }
+                //             m_rel_obj
+                // ViewGroup parent = (ViewGroup) m_field_obj.getParent();
                 //parent.getId() == R.id.guitar_layout
 
-                // TODO: m_field_obj.setVisibilitz(View.VISIBLE)
+                // TODO: m_field_obj.setVisibilities(View.VISIBLE)
                 // TODO: call create_request()
                 break;
-            // TODO add case for the second field
+             // TODO add case for the second field
+            case R.id.piano_layout:
+                if(m_field_obj.getVisibility() == View.INVISIBLE) {
+                    ViewGroup parent = (ViewGroup) m_field_obj.getParent();
+                    if (parent.getId() == R.id.piano_layout)
+                        m_field_obj.setVisibility(View.VISIBLE);
+                    create_request();
+                }
         }
         return true;
     }
@@ -182,7 +193,7 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
     private void create_request(){
         int position = 0; // stays zero if m_rel_obj is active
 
-        // TODO: remove the corresponding switch cases for removed lazouts
+        // TODO: remove the corresponding switch cases for removed layouts
         if(m_field_obj.getVisibility() == View.VISIBLE){
             ViewGroup parent = (ViewGroup) m_field_obj.getParent();
             switch(parent.getId()){
