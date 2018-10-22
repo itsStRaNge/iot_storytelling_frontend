@@ -13,7 +13,6 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,14 +27,15 @@ import pl.droidsonroids.gif.GifImageView;
 /* Implements all utilities to display and interact with the User as Sensor App */
 
 public abstract class SensorUtilities extends FileManager implements View.OnDragListener,
+                                                            View.OnClickListener,
                                                             View.OnTouchListener,
                                                             UploadInterface {
 
     public final static int QR_Call = 0;
     public final static int PERMISSION_REQUEST_CAMERA = 1;
 
-    private GifImageView m_field_obj;
-    private GifImageView m_rel_obj;
+    private GifImageView m_bird_in_box;
+    private GifImageView m_bird_outside_box;
 
     private String m_qr_code="code1";
 
@@ -51,15 +51,16 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
             check_camera_permission();
 
             /* Drag and Drop Init */
-            // TODO remove the corresponding dragListeners from the removed layouts
             findViewById(R.id.guitar_layout).setOnDragListener(this);
+            findViewById(R.id.guitar_layout).setOnClickListener(this);
             findViewById(R.id.piano_layout).setOnDragListener(this);
+            findViewById(R.id.piano_layout).setOnClickListener(this);
             findViewById(R.id.parent_view).setOnDragListener(this);
 
-            m_field_obj = (GifImageView) findViewById(R.id.myimage_fields);
-            m_field_obj.setOnTouchListener(this);
-            m_rel_obj = (GifImageView) findViewById(R.id.myimage_rel);
-            m_rel_obj.setOnTouchListener(this);
+            m_bird_in_box = (GifImageView) findViewById(R.id.myimage_fields);
+            m_bird_in_box.setOnTouchListener(this);
+            m_bird_outside_box = (GifImageView) findViewById(R.id.myimage_rel);
+            m_bird_outside_box.setOnTouchListener(this);
         }
     }
 
@@ -89,6 +90,19 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
         }
     }
 
+    public void checkBirdVisibility(String state){
+        if(state.equals("visible")){
+            if(m_bird_in_box.getVisibility() == View.INVISIBLE
+                    && m_bird_outside_box.getVisibility() == View.INVISIBLE){
+                m_bird_in_box.setVisibility(View.VISIBLE);
+            }
+        }
+        if(state.equals("invisible")){
+            m_bird_outside_box.setVisibility(View.INVISIBLE);
+            m_bird_in_box.setVisibility(View.INVISIBLE);
+        }
+    }
+
     /* ON TOUCH LISTENER */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -105,33 +119,22 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
                 } else {
                     return false;
                 }
-            case R.id.guitar_layout:
-                // TODO check if bird has disappeard
-                if(m_field_obj.getVisibility() == View.INVISIBLE) {
-                    ViewGroup parent = (ViewGroup) m_field_obj.getParent();
-                    if (parent.getId() == R.id.guitar_layout)
-                        m_field_obj.setVisibility(View.VISIBLE);
-                        create_request();
-                }
-                //             m_rel_obj
-                // ViewGroup parent = (ViewGroup) m_field_obj.getParent();
-                //parent.getId() == R.id.guitar_layout
-
-                // TODO: m_field_obj.setVisibilities(View.VISIBLE)
-                // TODO: call create_request()
-                break;
-             // TODO add case for the second field
-            case R.id.piano_layout:
-                if(m_field_obj.getVisibility() == View.INVISIBLE) {
-                    ViewGroup parent = (ViewGroup) m_field_obj.getParent();
-                    if (parent.getId() == R.id.piano_layout)
-                        m_field_obj.setVisibility(View.VISIBLE);
-                    create_request();
-                }
         }
         return true;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.guitar_layout:
+            case R.id.piano_layout:
+                if(m_bird_outside_box.getVisibility() == View.INVISIBLE
+                        && m_bird_in_box.getVisibility() == View.INVISIBLE){
+                    create_request();
+                }
+                break;
+        }
+    }
     @Override
     public boolean onDrag(View v, DragEvent event) {
         Drawable enterShape = getDrawable(R.drawable.shape_droptarget);
@@ -152,23 +155,22 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
                 ViewGroup container = (ViewGroup) v;
 
                 if(container.getId() == R.id.parent_view){
-                    float x_cord = event.getX() - m_rel_obj.getWidth() / 2;
-                    float y_cord = event.getY() - m_rel_obj.getHeight() / 2;
-                    m_rel_obj.setX(x_cord);
-                    m_rel_obj.setY(y_cord);
-                    m_rel_obj.setVisibility(View.VISIBLE);
-                    m_rel_obj.bringToFront();
-                    m_field_obj.setVisibility(View.INVISIBLE);
+                    float x_cord = event.getX() - m_bird_outside_box.getWidth() / 2;
+                    float y_cord = event.getY() - m_bird_outside_box.getHeight() / 2;
+                    m_bird_outside_box.setX(x_cord);
+                    m_bird_outside_box.setY(y_cord);
+                    m_bird_outside_box.setVisibility(View.VISIBLE);
+                    m_bird_outside_box.bringToFront();
+                    m_bird_in_box.setVisibility(View.INVISIBLE);
                 }else{
-                    ViewGroup owner = (ViewGroup) m_field_obj.getParent();
-                    owner.removeView(m_field_obj);
-                    container.addView(m_field_obj);
+                    ViewGroup owner = (ViewGroup) m_bird_in_box.getParent();
+                    owner.removeView(m_bird_in_box);
+                    container.addView(m_bird_in_box);
                     v.setBackground(normalShape);
-                    m_field_obj.setVisibility(View.VISIBLE);
-                    m_rel_obj.setVisibility(View.INVISIBLE);
+                    m_bird_in_box.setVisibility(View.VISIBLE);
+                    m_bird_outside_box.setVisibility(View.INVISIBLE);
                 }
-                // oyvind wants reaction only on qr code scan
-                // create_request();
+                create_request();
                 break;
         }
         return true;
@@ -194,8 +196,8 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
         int position = 0; // stays zero if m_rel_obj is active
 
         // TODO: remove the corresponding switch cases for removed layouts
-        if(m_field_obj.getVisibility() == View.VISIBLE){
-            ViewGroup parent = (ViewGroup) m_field_obj.getParent();
+        if(m_bird_in_box.getVisibility() == View.VISIBLE){
+            ViewGroup parent = (ViewGroup) m_bird_in_box.getParent();
             switch(parent.getId()){
                 case R.id.guitar_layout:
                     position = 1;

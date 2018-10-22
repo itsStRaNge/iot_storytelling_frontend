@@ -62,6 +62,7 @@ public class FirebaseManager implements ValueEventListener {
                     new DownloadManager(m_context).execute(audio_files, image_files, text_files);
                     break;
                 }
+                case DEVICE_TYPE:
                 case DEVICE_NUMBER:{
                     if(m_context.data_synced())
                         updateState(snap);
@@ -75,6 +76,7 @@ public class FirebaseManager implements ValueEventListener {
         String audio_file = state.child(AUDIO_KEY).getValue(String.class);
         String image_file = state.child(IMAGE_KEY).getValue(String.class);
         String text_file = state.child(TEXT_KEY).getValue(String.class);
+        String bird_visibility = state.child(BIRD_KEY).getValue(String.class);
 
         Log.d("Debug", "update State: " + audio_file
                 + " - " + image_file
@@ -83,6 +85,7 @@ public class FirebaseManager implements ValueEventListener {
         m_context.showImage(image_file);
         m_context.displayText(text_file);
         m_context.playAudio(audio_file);
+        m_context.checkBirdVisibility(bird_visibility);
     }
 
     @Override
