@@ -91,13 +91,13 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
     }
 
     public void checkBirdVisibility(String state){
-        if(state.equals("visible")){
+        if(state.equals(Configuration.BIRD_STATE_VIS)){
             if(m_bird_in_box.getVisibility() == View.INVISIBLE
                     && m_bird_outside_box.getVisibility() == View.INVISIBLE){
                 m_bird_in_box.setVisibility(View.VISIBLE);
             }
         }
-        if(state.equals("invisible")){
+        if(state.equals(Configuration.BIRD_STATE_INVIS)){
             m_bird_outside_box.setVisibility(View.INVISIBLE);
             m_bird_in_box.setVisibility(View.INVISIBLE);
         }

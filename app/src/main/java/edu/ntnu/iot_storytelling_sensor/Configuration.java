@@ -32,6 +32,8 @@ public final class Configuration {
     public static final String IMAGE_KEY = "image";
     public static final String TEXT_KEY = "text";
     public static final String BIRD_KEY = "bird";
+    public static final String BIRD_STATE_VIS = "visible";
+    public static final String BIRD_STATE_INVIS = "invisible";
 
     public static final String SRC_AUDIO_KEY = "Audio";
     public static final String SRC_IMAGE_KEY = "Images";
