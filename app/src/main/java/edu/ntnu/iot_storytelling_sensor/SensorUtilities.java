@@ -193,9 +193,8 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
 
     /* NETWORKING */
     private void create_request(){
-        int position = 3; // stays zero if m_rel_obj is active
-
-        // TODO: remove the corresponding switch cases for removed layouts
+        int position = 3; // value 3 if m_rel_obj is active
+        
         if(m_bird_in_box.getVisibility() == View.VISIBLE){
             ViewGroup parent = (ViewGroup) m_bird_in_box.getParent();
             switch(parent.getId()){
