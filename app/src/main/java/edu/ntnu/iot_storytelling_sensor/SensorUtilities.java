@@ -45,7 +45,7 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
 
         if(Configuration.isSensor()) {
             /* display sensor background */
-            findViewById(R.id.sensor_overlay).setVisibility(View.VISIBLE);
+            findViewById(R.id.camera_button).setVisibility(View.VISIBLE);
 
             /* Check for permissions */
             check_camera_permission();

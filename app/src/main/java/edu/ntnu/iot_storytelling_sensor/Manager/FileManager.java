@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import edu.ntnu.iot_storytelling_sensor.R;
+import pl.droidsonroids.gif.GifImageView;
 
 public class FileManager extends AppCompatActivity {
 
@@ -62,7 +63,7 @@ public class FileManager extends AppCompatActivity {
         File directory = this.getFilesDir();
         File file = new File(directory, file_name);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
-        ((ImageView) findViewById(R.id.background_img)).setImageBitmap(bitmap);
+        ((GifImageView) findViewById(R.id.background_img)).setImageBitmap(bitmap);
     }
 
     public void deleteCache() {
