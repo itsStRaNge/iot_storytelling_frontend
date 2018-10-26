@@ -85,7 +85,9 @@ public class FirebaseManager implements ValueEventListener {
         m_context.showImage(image_file);
         m_context.displayText(text_file);
         m_context.playAudio(audio_file);
-        m_context.checkBirdVisibility(bird_visibility);
+        
+        if(Configuration.isSensor())
+            m_context.checkBirdVisibility(bird_visibility);
     }
 
     @Override
