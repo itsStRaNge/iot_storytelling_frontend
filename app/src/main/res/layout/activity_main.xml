@@ -10,8 +10,18 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/background_img"
+        android:id="@+id/background_img_old"
         android:src="@drawable/background"
+        android:visibility="gone"
+        android:scaleType="fitXY"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:id="@+id/background_img"
+        android:layout_gravity="center"
+        android:visibility="visible"
         android:scaleType="fitXY"/>
 
     <pl.droidsonroids.gif.GifImageView
