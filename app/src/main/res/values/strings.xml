@@ -4,6 +4,6 @@
 
     <string name="progress_default_text">- / -</string>
 
-    <string name="tutorial">Hello, this bird needs help to move around.\n\nTry to grab it and move it somewhere.\n\nTry to place the bird in one of the four positions and go scan a QR code.
+    <string name="tutorial">This bird is looking for a partner. He also likes to play the piano and the guitar.
     </string>
 </resources>
