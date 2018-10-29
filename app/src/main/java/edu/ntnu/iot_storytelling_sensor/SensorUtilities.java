@@ -37,7 +37,7 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
     private GifImageView m_bird_in_box;
     private GifImageView m_bird_outside_box;
 
-    private String m_qr_code="code1";
+    private String m_qr_code="code0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
