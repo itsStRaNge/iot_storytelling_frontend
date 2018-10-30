@@ -66,6 +66,19 @@ public class FileManager extends AppCompatActivity {
         ((GifImageView) findViewById(R.id.background_img)).setImageBitmap(bitmap);
     }
 
+/*
+    public void showImage(String file_name){
+        File directory = this.getFilesDir();
+        File file = new File(directory, file_name);
+        Drawable drawable = ImageDecoder.decodeDrawable(file.getPath());
+        if (drawable instanceof AnimatedImageDrawable) { ((AnimatedImageDrawable) drawable).start(); }
+
+        ((GifImageView) findViewById(R.id.background_img)).setImageDrawable(drawable));
+    }
+
+*/
+
+
     public void deleteCache() {
         try {
             File dir = getCacheDir();
