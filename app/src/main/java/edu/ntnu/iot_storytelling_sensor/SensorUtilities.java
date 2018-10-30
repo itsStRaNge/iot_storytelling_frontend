@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+//import android.graphics.ImageDecoder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +23,7 @@ import edu.ntnu.iot_storytelling_sensor.Manager.FileManager;
 import edu.ntnu.iot_storytelling_sensor.Manager.UploadInterface;
 import edu.ntnu.iot_storytelling_sensor.Manager.UploadManager;
 import pl.droidsonroids.gif.GifImageView;
+
 
 
 /* Implements all utilities to display and interact with the User as Sensor App */
