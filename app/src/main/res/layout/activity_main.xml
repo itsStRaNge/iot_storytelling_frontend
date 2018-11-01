@@ -35,84 +35,89 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:orientation="horizontal"
+            android:layout_margin="5dp"
             android:background="@drawable/text_boarder"
-            android:layout_margin="5dp">
+            android:orientation="horizontal">
 
             <TextView
-                android:text="@string/tutorial"
+                android:id="@+id/text_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:textSize="@dimen/text_font_size"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:textStyle="bold"
-                android:id="@+id/text_view"/>
+                android:layout_weight="4"
+                android:text="@string/tutorial"
+                android:textSize="@dimen/text_font_size"
+                android:textStyle="bold" />
+
             <ImageView
-                android:src="@drawable/ic_camera_alt_black_24dp"
-                android:background="@color/background_ic_cam"
+                android:id="@+id/camera_button"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="35dp"
-                android:layout_marginBottom="35dp"
                 android:layout_marginEnd="15dp"
-                android:id="@+id/camera_button"
-                android:visibility="gone"/>
+                android:layout_marginBottom="35dp"
+                android:background="@color/background_ic_cam"
+                android:src="@drawable/ic_camera_alt_black_24dp"
+                android:visibility="gone" />
         </LinearLayout>
 
         <!-- TODO adjust two of the linear layout boxes here-->
         <!-- TODO change boxes from linear layout to image view and add src -->
         <LinearLayout
+            android:id="@+id/sensor_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:id="@+id/sensor_overlay"
             android:visibility="visible">
 
             <RelativeLayout
                 android:id="@+id/guitar_layout"
-                android:layout_marginBottom="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginStart="200dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_marginBottom="100dp">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/guitar"/>
+                    android:src="@drawable/guitar" />
+
                 <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/myimage_fields"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="15dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/bird_object"
-                    android:id="@+id/myimage_fields"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/bird_object" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/piano_layout"
-                android:layout_marginBottom="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginStart="200dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_marginBottom="100dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/piano"/>
-        </RelativeLayout>
+                    android:src="@drawable/piano" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 
 <LinearLayout
     android:layout_width="wrap_content"
