@@ -1,8 +1,6 @@
 package edu.ntnu.iot_storytelling_sensor.Manager;
 
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +13,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import edu.ntnu.iot_storytelling_sensor.GlideApp;
 import edu.ntnu.iot_storytelling_sensor.R;
-import pl.droidsonroids.gif.GifImageView;
 
 public class FileManager extends AppCompatActivity {
 
     private boolean DATA_SYNCED=false;
     private MediaPlayer m_mediaPlayer;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,26 +60,46 @@ public class FileManager extends AppCompatActivity {
         }
     }
 
-    public void showImage(String file_name){
+   public void showImage(String file_name){
+        //RequestManager requestManager = Glide.with(this);
         File directory = this.getFilesDir();
-        File file = new File(directory, file_name);
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
-        ((GifImageView) findViewById(R.id.background_img)).setImageBitmap(bitmap);
+        File file = new File(directory, file_name); // makes File object with name file
+        //RequestBuilder requestBuilder = requestManager.load(file);  // returns a request builder to load file
+        //requestBuilder.into(((GifImageView) findViewById(R.id.background_img)));
+        GlideApp
+                .with(this)
+                .load(file)
+                .into((ImageView) findViewById(R.id.background_img));
+        //Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
+        //((GifImageView) findViewById(R.id.background_img)).setImageBitmap(bitmap);
     }
+/*
+
+  public void showImage(String file_name) {
+      File directory = this.getFilesDir();
+      File file = new File(directory, file_name);
 
 
- /*   public void showImage(String file_name){
-        File directory = this.getFilesDir();
-        File file = new File(directory, file_name);
-        Drawable drawable = ImageDecoder.decodeDrawable(file.getPath());
-        if (drawable instanceof AnimatedImageDrawable){
-            ((AnimatedImageDrawable) drawable).start();
-        }
+      try {
+          Log.d("showImage", "Trying to view image");
+          ImageDecoder.Source source = ImageDecoder.createSource(file);
+          Log.d("showImage", "Trying to view image 2");
+          Drawable drawable = ImageDecoder.decodeDrawable(source);
+          ((GifImageView) findViewById(R.id.background_img)).setImageDrawable(drawable);
+            if (drawable instanceof AnimatedImageDrawable) {
+                ((AnimatedImageDrawable) drawable).start();
 
-        ((GifImageView) findViewById(R.id.background_img)).setImageDrawable(drawable));
-    }*/
+      } catch (IOException e) {
+          Log.d("showImage", e.toString());
+      } catch (Exception e) {
+          Log.d("showImage", "Caught an exception");
+          Log.d("showImage", e.toString());
+      }
+  }
+        //((GifImageView) findViewById(R.id.background_img)).setImageDrawable(drawable));
 
 
+*/
 
 
     public void deleteCache() {

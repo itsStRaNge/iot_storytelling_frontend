@@ -4,6 +4,8 @@
 
     <string name="progress_default_text">- / -</string>
 
-    <string name="tutorial">This bird is looking for a partner. He also likes to play the piano and the guitar.
+    <string name="tutorial">This bird is looking for a partner. He also likes to play the guitar and the piano.
+
+You can let the bird play the guitar, the piano, or no instrument. Also there are four QR codes in the room which you can scan.
     </string>
 </resources>

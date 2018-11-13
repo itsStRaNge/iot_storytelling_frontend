@@ -19,6 +19,9 @@ public class MainActivity extends SensorUtilities{
     public TextView m_progress_text;
     public LinearLayout m_progess_layout;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);

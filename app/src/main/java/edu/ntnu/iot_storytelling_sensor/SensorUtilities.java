@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-//import android.graphics.ImageDecoder;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -187,6 +187,7 @@ public abstract class SensorUtilities extends FileManager implements View.OnDrag
                 m_qr_code = data.getStringExtra("scanCode");
                 Log.d("QR_CODE", m_qr_code);
                 create_request();
+                m_qr_code = "code0";
             } else {
                 Log.d("Error", "Could not read QR Code");
             }
