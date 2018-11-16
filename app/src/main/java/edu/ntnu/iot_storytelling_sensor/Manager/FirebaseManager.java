@@ -84,6 +84,7 @@ public class FirebaseManager implements ValueEventListener {
 
         m_context.showImage(image_file);
         m_context.displayText(text_file);
+        // step into to enter playAudio while debugging
         m_context.playAudio(audio_file);
         
         if(Configuration.isSensor())
